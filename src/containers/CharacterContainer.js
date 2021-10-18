@@ -16,7 +16,7 @@ const CharacterContainer = () => {
     const getCharacters = function(){
         fetch("https://rickandmortyapi.com/api/character")
         .then(res => res.json())
-        .then(characters => setCharacters(characters))
+        .then(data => setCharacters(data.results))
     }
 
     const onCharacterSelected= function(character){
@@ -25,7 +25,7 @@ const CharacterContainer = () => {
 
     return (
         <div className="main-container">
-        <CharacterSelector characters={characters} onCharacterSelected={onCharacterSelected}/>
+        {characters ? <CharacterSelector characters={characters} onCharacterSelected={onCharacterSelected}/> : null}
         {selectedCharacter ? <CharacterDetail character={selectedCharacter}/> : null};
 
         </div>
@@ -34,5 +34,7 @@ const CharacterContainer = () => {
 
 
 }
+
+
 
 export default CharacterContainer
